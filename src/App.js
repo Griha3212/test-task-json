@@ -2,6 +2,7 @@ import data from './data.json';
 import './App.css';
 
 function App() {
+
   const compareNumbers = (a, b) => {
     if (data[a].sortOrder < data[b].sortOrder)
       return 1;
@@ -17,8 +18,8 @@ function App() {
     a.click();
   }
 
-  const arr = Object.keys(data).sort(compareNumbers)
-  const newArr = arr.reduce((acc, cur) => {
+  const sortedRecievedArray = Object.keys(data).sort(compareNumbers)
+  const arrayForExport = sortedRecievedArray.reduce((acc, cur) => {
     const newItem = {
       id: cur,
       name: data[cur].name,
@@ -29,17 +30,15 @@ function App() {
     return acc
   }, [])
 
-  // console.log(newArr);
-
   return (
     <div className="App">
       <header className="App-header">
-        {arr.map(elem => {
+        {sortedRecievedArray.map(elem => {
           return (<p key={data[elem].sortOrder} style={data[elem].style}>
             {`${elem}:${data[elem].name}`}</p>)
         })}
         <button onClick={
-          () => download(newArr, 'modified-data.json', 'text/plain')}>
+          () => download(arrayForExport, 'modified-data.json', 'text/plain')}>
           Donwload</button>
       </header>
     </div>

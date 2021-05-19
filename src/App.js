@@ -39,7 +39,7 @@ function App() {
         })}
         <button onClick={
           () => download(arrayForExport, 'modified-data.json', 'text/plain')}>
-          Donwload</button>
+          Сохранить</button>
       </header>
     </div>
   );
